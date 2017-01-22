@@ -1,8 +1,38 @@
 angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
-  // Your code here
+
+  //should have a method getAll (no parameters)
+    //should get all links with getAll
+  var getAll = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/links'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  //should have a method addOne (requires parameter)
+  //should add a new link with addOne
+  var addOne = function (linkObj) {
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: {url: linkObj.url}
+    })
+    .then(function (resp) {
+      return resp;
+    });
+  };
+
+  return {
+    getAll: getAll,
+    addOne: addOne
+  };
 })
+
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
   // it is responsible for authenticating our user
@@ -42,7 +72,6 @@ angular.module('shortly.services', [])
     $location.path('/signin');
   };
 
-
   return {
     signin: signin,
     signup: signup,
@@ -50,3 +79,6 @@ angular.module('shortly.services', [])
     signout: signout
   };
 });
+
+
+

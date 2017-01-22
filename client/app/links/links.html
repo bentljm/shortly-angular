@@ -1,3 +1,13 @@
-<div id='container'>
-  <!-- Your html here -->
+<div id='container' ng-init='' ng-controller='LinksController'>
+  <a href='#/signin' ng-submit='logout()'><button>Logout</button></a><hr>
+  <div ng-repeat="n in data.links track by $index">
+    <a target="_blank" href='{{n.url}}'>
+      <div><strong>{{n.title}}</strong></div>
+      <div>{{n.url}}</div>
+      <a>{{n.baseUrl}}/{{n.code}}</a>
+      <div><span>Visits: </span>{{n.visits}}</div>
+      <div><img src='../assets/redirect_icon.png'/></div>
+    </a>
+  </div>
 </div>
+

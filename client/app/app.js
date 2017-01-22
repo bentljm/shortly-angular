@@ -15,7 +15,23 @@ angular.module('shortly', [
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
-    // Your code here
+    .when('/links', {
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController',
+      authenticate: true
+    })
+    .when('/shorten', {
+      templateUrl: 'app/shorten/shorten.html',
+      controller: 'ShortenController',
+      authenticate: true
+    })
+    .when('/', {
+      templateUrl: 'app/auth/signin.html',
+      controller: 'AuthController'
+    })
+    .otherwise({
+      redirectTo: '/links'
+    });
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
@@ -38,6 +54,8 @@ angular.module('shortly', [
   };
   return attach;
 })
+
+
 .run(function ($rootScope, $location, Auth) {
   // here inside the run phase of angular, our services and controllers
   // have just been registered and our app is ready

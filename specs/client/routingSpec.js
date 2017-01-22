@@ -32,3 +32,4 @@ describe('Routing', function () {
     expect($route.routes['/shorten'].templateUrl).to.equal('app/shorten/shorten.html');
   });
 });
+
